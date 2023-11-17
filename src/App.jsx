@@ -5,7 +5,7 @@ import LayoutApp from "./layouts/LayoutApp"
 import HomeApp from "./views/HomeApp"
 import LayoutCandidato from "./layouts/LayoutCandidato"
 import CrearCandidato from "./components/app/CrearCandidato"
-import ListaCandidatos from "./components/app/ListaCandidatos"
+import ListaCandidatos from "./views/ListaCandidatos"
 
 function App() {
   const Register = () => <h1>Register</h1>
@@ -17,7 +17,7 @@ function App() {
       <Route path="/" element={<LayoutApp />} >
         <Route index element={<HomeApp />} />
 
-        <Route path="/Candidato" element={<LayoutCandidato />} >
+        <Route path="/candidatos" element={<LayoutCandidato />} >
           <Route index element={<Navigate to="lista" />} />
 
           <Route path="crear" element={<CrearCandidato />} />

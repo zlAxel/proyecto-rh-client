@@ -2,6 +2,8 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../../../public/logo.png'
+import { NavLink } from 'react-router-dom'
+import { menuApp } from '../../data/menuApp'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -34,32 +36,24 @@ export default function Navbar() {
                     alt="Red Mex"
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {/* Current: "border-sky-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="/"
-                    className="inline-flex items-center border-b-2 border-sky-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                <div 
+                  className="hidden sm:ml-6 sm:flex sm:space-x-8 [&>a]:inline-flex [&>a]:items-center [&>a]:px-1 [&>a]:pt-1 [&>a]:border-b-2 [&>a]:text-sm [&>a]:font-medium [&>a]:text-gray-500"
                   >
-                    Inicio
-                  </a>
-                  <a
-                    href="/Candidato"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Candidatos
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Calendar
-                  </a>
+                  {
+                    menuApp.map((item, index) => {
+                      return (
+                        <NavLink
+                          key={index}
+                          to={item.to}
+                          className={ ({isActive}) => 
+                            isActive ? 'border-sky-500' : ''
+                          }
+                          >
+                          {item.name}
+                        </NavLink>
+                      )
+                    })
+                  }
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -145,34 +139,27 @@ export default function Navbar() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pb-4 pt-2">
               {/* Current: "bg-sky-50 border-sky-500 text-sky-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
+              {/* <Disclosure.Button
                 as="a"
                 href="#"
                 className="block border-l-4 border-sky-500 bg-sky-50 py-2 pl-3 pr-4 text-base font-medium text-sky-700"
               >
                 Inicio
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Candidato
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Projects
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Calendar
-              </Disclosure.Button>
+              </Disclosure.Button> */}
+              {
+                menuApp.map((item, index) => {
+                  return (
+                    <Disclosure.Button
+                      key={index}
+                      as="a"
+                      href="#"
+                      className="block border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  )
+                })
+              }
             </div>
           </Disclosure.Panel>
         </>
