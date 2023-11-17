@@ -3,7 +3,6 @@ import {
   UserCircleIcon,
   ArrowPathIcon, 
   UserIcon, 
-  BarsArrowUpIcon, 
   PhoneIcon, 
   PencilIcon, 
   EnvelopeIcon, 
@@ -13,7 +12,7 @@ import {
 
 } from '@heroicons/react/20/solid'
 
-
+import EstadosLista from './EstadosLista';
 
 export default function CrearCandidato() {
 
@@ -146,7 +145,12 @@ export default function CrearCandidato() {
         </div>
 
         <div>
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Información Personal</h2>
+          <div>
+            <div className='absolute py-1'>
+                <UserIcon className='h-5 w-5'/>
+            </div>
+            <h2 className="text-base font-semibold leading-7 pl-10 text-gray-900">Información Personal</h2>
+          </div>
           {/* <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
             Use a permanent address where you can receive mail.
           </p> */}
@@ -225,7 +229,8 @@ export default function CrearCandidato() {
                 Ciudad / Estado
               </label>
               <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <select
+                <EstadosLista />
+                {/* <select
                   id="country"
                   name="country"
                   autoComplete="country-name"
@@ -262,7 +267,7 @@ export default function CrearCandidato() {
                   <option>Veracruz</option>
                   <option>Yucatán</option>
                   <option>Zacatecas</option>
-                </select>
+                </select> */}
               </div>
             </div>
 
