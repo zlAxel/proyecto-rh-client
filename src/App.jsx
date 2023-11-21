@@ -25,13 +25,6 @@ function App() {
           <Route path="visualizar" element={<VisualizarCandidato />} />
           <Route path="lista" element={<ListaCandidatos />} />
         </Route>
-        <Route path="/informes" element={<LayoutCandidato />} >
-          <Route index element={<Navigate to="lista" />} />
-
-          <Route path="nomina" element={<CrearCandidato />} />
-          <Route path="asistencia" element={<EditarCandidato />} />
-          <Route path="evaluacion" element={<VisualizarCandidato />} />
-        </Route>
   
       </Route>
       

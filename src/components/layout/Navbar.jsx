@@ -74,7 +74,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://business.bing.com/api/v3/search/person/photo?caller=IP&id=6e2c88d8-8531-4bcc-91c5-800fc36cb614"
+                        src="https://avatars.githubusercontent.com/u/130427489?v=4"
                         alt=""
                       />
                     </Menu.Button>

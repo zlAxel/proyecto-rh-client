@@ -59,9 +59,9 @@ export default function CrearCandidato() {
                 <button
                   type="button"
                   onClick={generateRandomId}
-                  className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-sky-600 hover:text-white transition duration-300"
                 >
-                  <ArrowPathIcon className="-ml-0.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <ArrowPathIcon className="-ml-0.5 h-5 w-5 text-gray-400 hover:text-white transition duration-300" aria-hidden="true" />
                   Generar
                 </button>
               </div>
@@ -123,7 +123,7 @@ export default function CrearCandidato() {
                 Subir Archivos
               </label>
               <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <div className="flex max-w-2xl justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="flex max-w-2xl justify-center rounded-lg border border-gray-900/25 px-6 hover:border-sky-700 border-double duration-300 py-10">
                   <div className="text-center">
                     <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
@@ -350,7 +350,7 @@ export default function CrearCandidato() {
       </button>
       <button
         type="submit"
-        className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+        className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
       >
         Guardar
       </button>
