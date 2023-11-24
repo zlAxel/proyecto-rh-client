@@ -122,7 +122,7 @@ export default function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/Auth"
+                            href="/auth/login"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Cerrar sesión
@@ -149,14 +149,13 @@ export default function Navbar() {
               {
                 menuApp.map((item, index) => {
                   return (
-                    <Disclosure.Button
-                      key={index}
-                      as="a"
-                      href="#"
-                      className="block border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                    <NavLink
+                    key={index}
+                    to={item.to}
+                    className="block border-l-4 border-transparent hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 py-2 pl-3 pr-4 text-base font-medium text-gray-500"
                     >
-                      {item.name}
-                    </Disclosure.Button>
+                    {item.name}
+                  </NavLink>
                   )
                 })
               }
