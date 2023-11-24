@@ -1,4 +1,28 @@
 import Logo from '/logo.png'; 
+import { createRef, useState } from 'react';
+
+const emailRef = createRef();
+const passwordRef = createRef();
+
+const [ errores, setErrores ] = useState([])
+
+const handleSubmit = async e => {
+    e.preventDefault();
+    
+    const datos = {
+        email: emailRef.current.value,
+        password: passwordRef.current.value
+    }
+    try {
+        const { data } = await clienteAxios.post('/api/login', datos);
+
+        console.log(data);
+    } catch (error) {
+      setErrores(Object.values(error.response.data.errors))
+    }
+
+}
+
 
 export default function Login() {
     return (
