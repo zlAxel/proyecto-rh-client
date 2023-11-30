@@ -11,21 +11,119 @@ import {
   DocumentArrowDownIcon,
 
 } from '@heroicons/react/20/solid'
+import { createRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createCandidato, getCandidato, updateCandidato } from '../../data/candidato';
+import { useApp } from '../../hooks/useApp';
+import ModalError from '../utility/ModalError';
 
-import EstadosLista from './EstadosLista';
+import EstadosLista, { estadoRef } from './EstadosLista';
 
-export default function CrearCandidato() {
+export default function CrearCandidato(tipo) {
+  const { id } = useParams();
+
+  if( tipo.visualizar ) {
+    
+    getCandidato(id).then((data) => {
+      const candidato = data;
+      referenciaRef.current.value    = candidato.referencia;
+      curpRef.current.value          = candidato.curp;
+      rfcRef.current.value           = candidato.rfc;
+      nivelEstudiosRef.current.value = candidato.nivel_estudio;
+      puestoRef.current.value        = candidato.puesto;
+      nombreRef.current.value        = candidato.nombres;
+      apellidosRef.current.value     = candidato.apellidos;
+      telefonoRef.current.value      = candidato.telefono;
+      correoRef.current.value        = candidato.correo;
+      domicilioRef.current.value     = candidato.domicilio;
+      alcaldiaRef.current.value      = candidato.alcaldia;
+      coloniaRef.current.value       = candidato.colonia;
+      codigoPostalRef.current.value  = candidato.codigo_postal;
+      estadoRef.current.name         = candidato.estado;
+    });
+  }
+
+  const navigate = useNavigate();
+
+  const referenciaRef    = createRef();
+  const curpRef          = createRef();
+  const rfcRef           = createRef();
+  const nivelEstudiosRef = createRef();
+  const puestoRef        = createRef();
+  const nombreRef        = createRef();
+  const apellidosRef     = createRef();
+  const telefonoRef      = createRef();
+  const correoRef        = createRef();
+  const domicilioRef     = createRef();
+  const alcaldiaRef      = createRef();
+  const coloniaRef       = createRef();
+  const codigoPostalRef  = createRef();
+
+  // const [errores, setErrores] = useState([]);
+  
+  const { openModal, setOpenModal, setAlertaApp, alertaApp } = useApp();
+
 
   function generateRandomId() {
 
+    if( tipo.visualizar ) return;
     // Generar un ID aleatorio (puedes personalizar la lógica para tu caso específico)
     const randomId = Math.floor(Math.random() * Math.pow(10, 4)).toString().padStart(4, '0');  
     // Mostrar el ID aleatorio en el input  
-    document.getElementById('randomIdInput').value = `ref-${randomId}`;
-
+    referenciaRef.current.value = `ref-${randomId}`;
   }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const candidato = {
+      referencia: referenciaRef.current.value,
+      curp: curpRef.current.value,
+      rfc: rfcRef.current.value,
+      nivel_estudio: nivelEstudiosRef.current.value,
+      puesto: puestoRef.current.value,
+      nombres: nombreRef.current.value,
+      apellidos: apellidosRef.current.value,
+      telefono: telefonoRef.current.value,
+      correo: correoRef.current.value,
+      domicilio: domicilioRef.current.value,
+      alcaldia: alcaldiaRef.current.value,
+      colonia: coloniaRef.current.value,
+      codigo_postal: codigoPostalRef.current.value,
+      estado: estadoRef.current.name,
+    };
+    
+    if( tipo.visualizar ){
+      await updateCandidato(id, candidato).then((data) => {
+        setAlertaApp([data])
+        navigate('/candidatos/lista');
+      }).catch((error) => {
+        setAlertaApp(Object.values(error?.response?.data?.errors));
+        setOpenModal(true);
+      });
+      return;
+    }
+    await createCandidato(candidato).then((data) => {
+      setAlertaApp([data])
+      navigate('/candidatos/lista');
+    }).catch((error) => {
+      setAlertaApp(Object.values(error?.response?.data?.errors));
+      setOpenModal(true);
+    });
+  };
+
+  const handleClickCancelar = () => {
+    navigate('/candidatos/lista');
+  };
+
   return (
     <form>
+      { alertaApp.length > 0 &&  
+      <ModalError 
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        type='error'
+      />
+      }
       <div className="space-y-12 sm:space-y-16">
         <div className='relative'>
           <div className='absolute py-1'>
@@ -51,6 +149,7 @@ export default function CrearCandidato() {
                     type=""
                     name="randomIdInput"
                     id="randomIdInput"
+                    ref={referenciaRef}
                     className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                     placeholder="ref-0000"
                     readOnly
@@ -80,6 +179,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="curp"
                     id="curp"
+                    ref={curpRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 ease-in sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -96,31 +196,49 @@ export default function CrearCandidato() {
                     type="text"
                     name="rfc"
                     id="rfc"
+                    ref={rfcRef}
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                  />
+                </div>
+            </div>
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+              <label htmlFor="curp" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                Nivel de estudios
+              </label>
+              <div className="relative mt-2 rounded-md shadow-sm">
+                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center pl-3">
+                    <DocumentArrowDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </div>
+                  <input
+                    type="text"
+                    name="nivel_estudios"
+                    id="nivel_estudios"
+                    ref={nivelEstudiosRef}
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                  />
+                </div>
+            </div>
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+              <label htmlFor="curp" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                Puesto
+              </label>
+              <div className="relative mt-2 rounded-md shadow-sm">
+                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center pl-3">
+                    <DocumentArrowDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </div>
+                  <input
+                    type="text"
+                    name="puesto"
+                    id="puesto"
+                    ref={puestoRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
 
-            <div className="sm:grid sm:grid-cols-3 sm:items-center sm:gap-4 sm:py-6">
-              <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
-                Foto de Perfil
-              </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <div className="flex items-center gap-x-3">
-                  <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
-                  <button
-                    type="button"
-                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-sky-600 hover:text-white transition duration-300"
-                  >
-                    Cambiar
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+            {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
               <label htmlFor="upload" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                Subir Archivos
+                Subir documentación
               </label>
               <div className="mt-2 sm:col-span-2 sm:mt-0">
                 <div className="flex max-w-2xl justify-center rounded-lg border border-gray-900/25 px-6 hover:border-sky-700 border-double duration-300 py-10">
@@ -140,7 +258,7 @@ export default function CrearCandidato() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -168,6 +286,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="first-name"
                     id="fist-name"
+                    ref={nombreRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -185,6 +304,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="last-name"
                     id="last-name"
+                    ref={apellidosRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -201,6 +321,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="phone-number"
                     id="phone-number"
+                    ref={telefonoRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -218,6 +339,7 @@ export default function CrearCandidato() {
                     type="email"
                     name="email"
                     id="email"
+                    ref={correoRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
                     placeholder="admin@redmex.com"
                   />
@@ -230,44 +352,6 @@ export default function CrearCandidato() {
               </label>
               <div className="mt-2 sm:col-span-2 sm:mt-0">
                 <EstadosLista />
-                {/* <select
-                  id="country"
-                  name="country"
-                  autoComplete="country-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
-                >
-                  <option>Aguas Calientes</option>
-                  <option>Baja California</option>
-                  <option>Baja California Sur</option>
-                  <option>Campeche</option>
-                  <option>Ciudad de México</option>
-                  <option>Chiapas</option>
-                  <option>Coahuila Zaragoza</option>
-                  <option>Colima</option>
-                  <option>Chihuahua</option>
-                  <option>Durango</option>
-                  <option>Guanajuato</option>
-                  <option>Guerrero</option>
-                  <option>Hidalgo</option>
-                  <option>Jalisco</option>
-                  <option>México</option>
-                  <option>Morelos</option>
-                  <option>Nayarit</option>
-                  <option>Nuevo León</option>
-                  <option>Oaxaca</option>
-                  <option>Puebla</option>
-                  <option>Querétaro</option>
-                  <option>Quintana Roo</option>
-                  <option>San Luis Potosí</option>
-                  <option>Sinaloa</option>
-                  <option>Sonora</option>
-                  <option>Tabasco</option>
-                  <option>Tamaulipas</option>
-                  <option>Tlaxcala</option>
-                  <option>Veracruz</option>
-                  <option>Yucatán</option>
-                  <option>Zacatecas</option>
-                </select> */}
               </div>
             </div>
 
@@ -283,6 +367,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="street-address"
                     id="street-address"
+                    ref={domicilioRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -300,6 +385,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="city"
                     id="city"
+                    ref={alcaldiaRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -317,6 +403,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="region"
                     id="region"
+                    ref={coloniaRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -334,6 +421,7 @@ export default function CrearCandidato() {
                     type="text"
                     name="postal-code"
                     id="postal-code"
+                    ref={codigoPostalRef}
                     className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -345,15 +433,16 @@ export default function CrearCandidato() {
     </div>
 
     <div className="mt-6 flex items-center justify-end gap-x-6">
-      <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-        Cancelar
+      <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={() => handleClickCancelar() }>
+        Regresar
       </button>
-      <button
-        type="submit"
-        className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-      >
-        Guardar
-      </button>
+          <button
+          type="submit"
+          onClick={ e => handleSubmit(e) }
+          className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+        >
+          Guardar
+        </button>
     </div>
   </form>
   )

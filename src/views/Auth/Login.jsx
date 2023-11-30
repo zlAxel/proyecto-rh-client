@@ -1,29 +1,40 @@
 import Logo from '/logo.png'; 
-import { createRef, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import Alerta from '../../components/app/Alerta'
 import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../../components/utility/Button';
 
 export default function Login() {
   
   const emailRef = createRef();
   const passwordRef = createRef();
   
-  const [ errores, setErrores ] = useState([])
+  const [ errores, setErrores ] = useState([]);
+  const [loadingButton, setLoadingButton] = useState(false);
   const { login } = useAuth({
     middleware: 'guest',
     url: '/'
-  })
+  });
   
   const handleSubmit = async e => {
       e.preventDefault();
+
+      setLoadingButton(true);
       
       const datos = {
           email: emailRef.current.value,
           password: passwordRef.current.value
       }
 
-      login(datos, setErrores)
+      await login(datos, setErrores);
   }
+
+  useEffect(() => {
+    if (errores.length > 0) {
+      setLoadingButton(false);
+    }
+  }, [errores])
+  
   
   return (
     <>
@@ -77,15 +88,14 @@ export default function Login() {
                 </div>
               </div>
               <div className='!mt-12'>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 transition duration-300 transition-colors"
-                  >
-                  Iniciar sesión
-                </button>
+                <Button 
+                  type='submit' 
+                  content='Iniciar sesión'
+                  loading={loadingButton}
+                />
               </div>
             </form>
-                  {errores.length > 0 && <Alerta errores={errores}/> }
+                  {errores.length > 0 && <Alerta errores={errores} setLoadingButton={setLoadingButton} /> }
           </div>
         </div>
       </>

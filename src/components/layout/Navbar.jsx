@@ -4,12 +4,24 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../../../public/logo.png'
 import { NavLink } from 'react-router-dom'
 import { menuApp } from '../../data/menuApp'
+import { useAuth } from '../../hooks/useAuth'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+
+  const { logout } = useAuth({
+    middleware: 'auth',
+    url: '/auth/login'
+  });
+  
+  const handleLogout = () => {
+
+    logout();
+  };
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -121,12 +133,14 @@ export default function Navbar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/auth/login"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
+                          <button
+                            type="button"
+                            onClick={ () => handleLogout() }
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-full text-left')}
+                            >
+                            <span className='sr-only'>Cerrar sesión</span>
                             Cerrar sesión
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

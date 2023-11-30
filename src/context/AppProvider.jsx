@@ -1,15 +1,17 @@
-import { createContext } from "react"
+import { createContext, useState } from "react"
 
-const AppContext = createContext();
+export const AppContext = createContext();
  
 const AppProvider = ({children}) => {
-    
+    const [alertaApp, setAlertaApp] = useState([])
+    const [openModal, setOpenModal] = useState(false);
 
     return (
 
         <AppContext.Provider
             value={{
-                
+                alertaApp, setAlertaApp,
+                openModal, setOpenModal,
             }}
         > {children}</AppContext.Provider>
     )
@@ -20,4 +22,3 @@ export {
     AppProvider
 }
 
-export default AppContext

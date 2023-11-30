@@ -1,6 +1,7 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { createRef } from 'react'
 
 const people = [
   {id: 1, name: 'Aguas Calientes' },
@@ -38,18 +39,24 @@ const people = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+export const estadoRef = createRef();
 
 export default function EstadosLista() {
-  const [selected, setSelected] = useState(people[0])
+  const [estadoSelected, setEstadoSelected] = useState(people[0]);
+
+  useEffect(() => {
+    estadoRef.current = estadoSelected;
+  }, [estadoSelected])
+  
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={estadoSelected} onChange={setEstadoSelected}>
       {({ open }) => (
         <>
           <Listbox.Label className="block text-sm font-medium leading-6 items-center text-gray-900"></Listbox.Label>
           <div className="relative mt-2">
             <Listbox.Button className="relative w-auto cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm sm:leading-6">
-              <span className="block truncate">{selected.name}</span>
+              <span className="block truncate">{estadoSelected.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
               </span>
@@ -74,13 +81,13 @@ export default function EstadosLista() {
                     }
                     value={person}
                   >
-                    {({ selected, active }) => (
+                    {({ estadoSelected, active }) => (
                       <>
-                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                        <span className={classNames(estadoSelected ? 'font-semibold' : 'font-normal', 'block truncate')}>
                           {person.name}
                         </span>
 
-                        {selected ? (
+                        {estadoSelected ? (
                           <span
                             className={classNames(
                               active ? 'text-white' : 'text-sky-600',

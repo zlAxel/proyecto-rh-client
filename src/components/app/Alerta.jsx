@@ -15,7 +15,7 @@ const Alerta = ({errores}) => {
           <div className="mt-2 text-sm text-red-700">
             <ul role="list" className="list-disc space-y-1 pl-5">
                 {errores.map(error => (
-                    <li>{error}.</li>
+                    <li key={error}>{error}.</li>
                 ))}
             </ul>
           </div>
