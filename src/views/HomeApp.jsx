@@ -1,4 +1,6 @@
 import React from 'react'
+import Logo from '/logo.png'; 
+
 
 const posts = [
   {
@@ -56,16 +58,21 @@ const HomeApp = () => {
           </h1>
           <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
             <p className="text-lg leading-8 text-gray-600">
-              Aquí puedes identificar a los nuevos candidatos para tu empresa, gestionar, crear y editar. 
-              Este sistema se diseñó con el objetivo de proporcionar una mayor facilidad en la administración y control. 
-              RedMex ha creado esta herramienta pensando en todas las empresas que estén interesadas en aprovechar los servicios que ofrece.
+              Aquí puedes identificar a los nuevos candidatos para tu empresa, gestionar, crear y editar.  
+              Este sistema se diseñó con el objetivo de proporcionar una mayor facilidad en la administración y control. <br />
+              <span className='text-indigo-600 font-semibold'>RedTech Solutions</span> ha creado esta herramienta pensando en todas las empresas que estén interesadas en aprovechar los servicios que ofrece.
             </p>
           </div>
-          <img
+          {/* <img
             src="https://plus.unsplash.com/premium_photo-1661398706538-4adf5b62d47a?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
             className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-10 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-10"
-          />
+          /> */}
+          <img
+              className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-10 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-10 relative top-0 lg:-top-16"
+              src={Logo}	
+              alt="RED"
+              />
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />

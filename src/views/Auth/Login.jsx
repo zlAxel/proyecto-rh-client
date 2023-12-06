@@ -1,4 +1,4 @@
-import Logo from '/logo.png'; 
+import Logo from '/logoAuth.png'; 
 import { createRef, useEffect, useState } from 'react';
 import Alerta from '../../components/app/Alerta'
 import { useAuth } from '../../hooks/useAuth';
@@ -41,7 +41,7 @@ export default function Login() {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
-              className="mx-auto h-44 w-auto"
+              className="mx-auto h-32 mb-12 w-auto"
               src={Logo}	
               alt="RED"
               />
@@ -64,7 +64,7 @@ export default function Login() {
                     autoComplete="email"
                     required
                     ref={emailRef}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                     />
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function Login() {
                     autoComplete="current-password"
                     ref={passwordRef}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                     />
                 </div>
               </div>

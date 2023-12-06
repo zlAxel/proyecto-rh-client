@@ -150,7 +150,7 @@ export default function CrearCandidato(tipo) {
                     name="randomIdInput"
                     id="randomIdInput"
                     ref={referenciaRef}
-                    className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="ref-0000"
                     readOnly
                   />
@@ -158,7 +158,7 @@ export default function CrearCandidato(tipo) {
                 <button
                   type="button"
                   onClick={generateRandomId}
-                  className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-sky-600 hover:text-white transition duration-300"
+                  className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-indigo-600 hover:text-white transition duration-300"
                 >
                   <ArrowPathIcon className="-ml-0.5 h-5 w-5 text-gray-400 hover:text-white transition duration-300" aria-hidden="true" />
                   Generar
@@ -180,7 +180,7 @@ export default function CrearCandidato(tipo) {
                     name="curp"
                     id="curp"
                     ref={curpRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 ease-in sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 ease-in sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -197,7 +197,7 @@ export default function CrearCandidato(tipo) {
                     name="rfc"
                     id="rfc"
                     ref={rfcRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -214,7 +214,7 @@ export default function CrearCandidato(tipo) {
                     name="nivel_estudios"
                     id="nivel_estudios"
                     ref={nivelEstudiosRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -231,7 +231,7 @@ export default function CrearCandidato(tipo) {
                     name="puesto"
                     id="puesto"
                     ref={puestoRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -241,13 +241,13 @@ export default function CrearCandidato(tipo) {
                 Subir documentación
               </label>
               <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <div className="flex max-w-2xl justify-center rounded-lg border border-gray-900/25 px-6 hover:border-sky-700 border-double duration-300 py-10">
+                <div className="flex max-w-2xl justify-center rounded-lg border border-gray-900/25 px-6 hover:border-indigo-700 border-double duration-300 py-10">
                   <div className="text-center">
                     <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label
                         htmlFor="file-upload"
-                        className="relative cursor-pointer rounded-md bg-white font-semibold text-sky-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-600 focus-within:ring-offset-2 hover:text-sky-500"
+                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                       >
                         <span>Cargar Archivos</span>
                         <input id="file-upload" name="file-upload" type="file" className="sr-only" />
@@ -287,7 +287,7 @@ export default function CrearCandidato(tipo) {
                     name="first-name"
                     id="fist-name"
                     ref={nombreRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -305,7 +305,7 @@ export default function CrearCandidato(tipo) {
                     name="last-name"
                     id="last-name"
                     ref={apellidosRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -322,7 +322,7 @@ export default function CrearCandidato(tipo) {
                     name="phone-number"
                     id="phone-number"
                     ref={telefonoRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -340,7 +340,7 @@ export default function CrearCandidato(tipo) {
                     name="email"
                     id="email"
                     ref={correoRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:text-sm sm:leading-6"
                     placeholder="admin@redmex.com"
                   />
                 </div>
@@ -368,7 +368,7 @@ export default function CrearCandidato(tipo) {
                     name="street-address"
                     id="street-address"
                     ref={domicilioRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -386,7 +386,7 @@ export default function CrearCandidato(tipo) {
                     name="city"
                     id="city"
                     ref={alcaldiaRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs transition duration-300 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs transition duration-300 sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -404,7 +404,7 @@ export default function CrearCandidato(tipo) {
                     name="region"
                     id="region"
                     ref={coloniaRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -422,7 +422,7 @@ export default function CrearCandidato(tipo) {
                     name="postal-code"
                     id="postal-code"
                     ref={codigoPostalRef}
-                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-300 sm:max-w-xs sm:text-sm sm:leading-6"
                   />
                 </div>
             </div>
@@ -439,7 +439,7 @@ export default function CrearCandidato(tipo) {
           <button
           type="submit"
           onClick={ e => handleSubmit(e) }
-          className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Guardar
         </button>

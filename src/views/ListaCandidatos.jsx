@@ -46,7 +46,7 @@ export default function ListaCandidatos() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
           to="/candidatos/crear"
-            className="inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
           <PlusIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
             Nuevo Candidato
@@ -94,15 +94,15 @@ export default function ListaCandidatos() {
                           to={`/candidatos/visualizar/${candidato.id}`}
                           className="relative inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 transition duration-300 hover:bg-gray-200"
                           >
-                          <EyeIcon className="-ml-0.5 h-4 w-4 text-sky-400" aria-hidden="true" />
-                          Visualizar
+                          <EyeIcon className="-ml-0.5 h-4 w-4 text-indigo-400" aria-hidden="true" />
+                          Modificar
                         </Link>
                         <button
                           type="button"
                           onClick={ () => handleDelete(candidato.id) }
                           className="relative inline-flex items-center gap-x-1.5 rounded-r-md ml-2 px-3 py-2 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 transition duration-300 hover:bg-gray-200"
                         >
-                          <TrashIcon className="-ml-0.5 h-4 w-4 text-sky-400" aria-hidden="true" />
+                          <TrashIcon className="-ml-0.5 h-4 w-4 text-indigo-400" aria-hidden="true" />
                           Eliminar
                         </button>
                       </td>
